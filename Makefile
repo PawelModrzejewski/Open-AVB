@@ -24,6 +24,7 @@ help:
 	@echo '  jackd-talker      - jackd-talker application'
 	@echo '  jackd-listener    - jackd-listener application'
 	@echo '  live_stream       - live_stream application'
+	@echo '  i210_read_reg     - i210_read_reg application'
 	@echo ''
 	@echo 'Cleaning targets:'
 	@echo ''
@@ -116,6 +117,13 @@ live_stream:
 live_stream_clean:
 	$(call descend,examples/live_stream/,clean)
 
+i210_read_reg:
+	$(MAKE) lib
+	$(call descend,examples/$@)
+
+i210_read_reg_clean:
+	$(call descend,examples/i210_read_reg/,clean)
+
 avtp_pipeline: lib
 	$(MAKE) -s -C lib/avtp_pipeline -f avtp_pipeline.mk
 
@@ -135,10 +143,10 @@ avtp_avdecc_doc: lib
 	$(MAKE) -s -C lib/avtp_pipeline -f avtp_avdecc.mk doc
 
 examples_all: examples_common simple_talker simple_listener mrp_client live_stream jackd-talker \
-	jackd-listener simple_rx
+	jackd-listener simple_rx i210_read_reg
 
 examples_all_clean: examples_common_clean simple_talker_clean simple_listener_clean mrp_client_clean \
-	jackd-talker_clean jackd-listener_clean live_stream_clean simple_rx_clean
+	jackd-talker_clean jackd-listener_clean live_stream_clean simple_rx_clean i210_read_reg_clean
 
 all: lib daemons_all examples_all avtp_pipeline avtp_avdecc
 

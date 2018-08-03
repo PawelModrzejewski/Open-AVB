@@ -1,0 +1,11 @@
+Sample application that reads specified Intel© I210 NIC registers.
+
+New registers can be added to regs_table based on pattern:
+<description>, <mnemonic>, <base address>, <per queue offset>
+
+Output pattern:
+---------------------------------------------------------------------------
+<description>
+---------------------------------------------------------------------------
+mnemonic (address)    hex_value    dec_value    ts: timestamp
+
